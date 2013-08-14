@@ -4,5 +4,6 @@
     <string name="app_name">The Budgeteer</string>
     <string name="action_settings">Settings</string>
     <string name="title">The Budgeteer!</string>
+    <string name="new_transaction_label">New Transaction</string>
 
 </resources>

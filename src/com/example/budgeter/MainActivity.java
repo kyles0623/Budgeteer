@@ -1,15 +1,20 @@
 package com.example.budgeter;
 
-import android.os.Bundle;
 import android.app.Activity;
+import android.content.Intent;
+import android.os.Bundle;
 import android.view.Menu;
+import android.view.View;
+import android.view.View.OnClickListener;
 
-public class MainActivity extends Activity {
+public class MainActivity extends Activity implements OnClickListener {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
+		
+		setListeners();
 	}
 
 	@Override
@@ -17,6 +22,32 @@ public class MainActivity extends Activity {
 		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.main, menu);
 		return true;
+	}
+	
+	public void onClick(View v)
+	{
+		switch(v.getId())
+		{
+		case R.id.new_transaction:
+			Intent intent = new Intent(MainActivity.this,Transaction.class);
+			startActivity(intent);
+			break;
+			
+		
+		}
+		
+		
+	}
+	//Sets onlick listeners for every button
+	private void setListeners()
+	{
+		int[] ViewIds = {R.id.new_transaction};
+		
+		for(int id: ViewIds)
+		{
+			findViewById(id).setOnClickListener(this);
+		}
+		
 	}
 
 }
