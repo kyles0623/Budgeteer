@@ -14,7 +14,7 @@ public class MainActivity extends Activity implements OnClickListener {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 		
-		setListeners();
+		
 	}
 
 	@Override
@@ -38,16 +38,6 @@ public class MainActivity extends Activity implements OnClickListener {
 		
 		
 	}
-	//Sets onlick listeners for every button
-	private void setListeners()
-	{
-		int[] ViewIds = {R.id.new_transaction};
-		
-		for(int id: ViewIds)
-		{
-			findViewById(id).setOnClickListener(this);
-		}
-		
-	}
+
 
 }
