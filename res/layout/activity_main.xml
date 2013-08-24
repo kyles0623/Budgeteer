@@ -7,14 +7,27 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".MainActivity" >
-
-    
-    
-    
+   <LinearLayout
+       android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+	<TextView
+	    android:layout_width="wrap_content"
+	    android:layout_weight="1"
+        android:layout_height="wrap_content"
+        android:text="@string/balance_label"
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:id="@+id/current_balance"
+        />
+    </LinearLayout>
     <Button
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:id="@+id/new_transaction"
+        android:layout_alignParentBottom="true"
         android:onClick="onClick"
         android:text="@string/new_transaction_label"
         />
