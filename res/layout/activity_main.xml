@@ -9,7 +9,9 @@
     tools:context=".MainActivity" >
    <LinearLayout
        android:layout_width="wrap_content"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:layout_alignParentBottom="true"
+    android:layout_alignParentLeft="true">
 	<TextView
 	    android:layout_width="wrap_content"
 	    android:layout_weight="1"
@@ -24,12 +26,19 @@
         />
     </LinearLayout>
     <Button
-        android:layout_width="fill_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/new_transaction"
-        android:layout_alignParentBottom="true"
+        android:layout_alignParentBottom="true" 
+        android:layout_alignParentRight="true"
         android:onClick="onClick"
         android:text="@string/new_transaction_label"
         />
+    <ListView 
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_alignParentTop="true"
+        android:id="@android:id/list"
+        android:layout_above="@id/new_transaction" />
 
 </RelativeLayout>

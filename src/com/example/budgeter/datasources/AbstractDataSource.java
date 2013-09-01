@@ -4,13 +4,12 @@ import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 
-import com.example.budgeter.DatabaseHelper;
 
 public abstract class AbstractDataSource {
 	protected static SQLiteDatabase database;
 	
 	protected static DatabaseHelper dbHelper = null;
-	private String TAG = "Budgeteer";
+	protected String TAG = "Budgeteer";
 	
 	public AbstractDataSource(Context context)
 	{
