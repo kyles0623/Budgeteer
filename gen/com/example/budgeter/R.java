@@ -9,6 +9,8 @@ package com.example.budgeter;
 
 public final class R {
     public static final class array {
+        public static final int confirm_dialog=0x7f040002;
+        public static final int options_dialog=0x7f040001;
         public static final int transaction_type=0x7f040000;
     }
     public static final class attr {
@@ -53,9 +55,11 @@ public final class R {
         public static final int category_prompt=0x7f060005;
         public static final int new_transaction_btn=0x7f060008;
         public static final int new_transaction_label=0x7f060003;
-        public static final int recent_trans_label=0x7f060009;
+        public static final int options_dialog_title=0x7f06000b;
+        public static final int recent_trans_label=0x7f06000a;
         public static final int title=0x7f060001;
         public static final int transaction_type_label=0x7f060007;
+        public static final int update_transaction_btn=0x7f060009;
     }
     public static final class style {
         /** 

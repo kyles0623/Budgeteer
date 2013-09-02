@@ -4,4 +4,12 @@
         <item>Expense</item>
         <item>Deposit</item>
     </array>
+    <array name="options_dialog">
+        <item>Edit</item>
+        <item>Delete</item>
+    </array>
+    <array name="confirm_dialog">
+        <item>Yes</item>
+        <item>No</item>
+    </array>
 </resources>

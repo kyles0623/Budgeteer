@@ -10,5 +10,7 @@
 	<string name="category_label">Category: </string>
 	<string name="transaction_type_label">Transaction Type: </string>
 	<string name="new_transaction_btn">Add Transaction</string>
-	<string name="recent_trans_label">Recent Transactions</string>
+	<string name="update_transaction_btn">Update Transaction</string>
+	<string name="recent_trans_label">All Transactions</string>
+	<string name="options_dialog_title">Edit Options</string>
 </resources>

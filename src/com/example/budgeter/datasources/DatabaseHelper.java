@@ -10,7 +10,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 	private static final String TAG = "Budgeteer";
 	
 	private static final String DATABASE_NAME = "Budgeteer";
-	private static final int DATABASE_VERSION = 22;
+	private static final int DATABASE_VERSION = 25;
 	private static final String[] TABLES = 
 		{
 			"transactions",

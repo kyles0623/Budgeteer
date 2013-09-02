@@ -16,7 +16,7 @@ public class Transaction extends Model {
 	private String created;
 	public Transaction()
 	{
-		
+		this.id = -1;
 	}
 	public Transaction(int id, float amount, Category category, int transaction_type,String description,String created)
 	{

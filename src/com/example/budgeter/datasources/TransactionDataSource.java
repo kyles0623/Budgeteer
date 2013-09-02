@@ -33,8 +33,17 @@ public class TransactionDataSource extends AbstractDataSource {
 		values.put(TRANS_CAT_ID,transaction.getCategoryId());
 		values.put(TRANS_TYPE,transaction.getTransactionType());
 		values.put(TRANS_DESC,transaction.getDescription());
-		
-		return database.insert(TABLE, null, values); 
+		if(transaction.getId() != -1)
+		{
+			String where = "id=?";
+			String[] args = {transaction.getId()+""};
+			return database.update(TABLE, values,where,args); 
+		}
+		else
+		{
+			return database.insert(TABLE, null, values);
+		}
+		 
 	}
 	
 	public long createRecord(float amount, int category_id, int transaction_type, String description) {
@@ -47,17 +56,35 @@ public class TransactionDataSource extends AbstractDataSource {
 		values.put(TRANS_DESC,description);
 		return database.insert(TABLE, null, values);  
 	}
-	
-	public ArrayList<Transaction> selectAllRecords(boolean today) {
+	public Transaction findById(int id)
+	{
 		String[] cols = {TRANS_ID,TRANS_AMOUNT,TRANS_CAT_ID,TRANS_TYPE,TRANS_DESC,TRANS_CREATED};
-		String where = null;
-		String[] where_args = {TRANS_CREATED};
-		if(today){
-			where = "? > CURRENT_TIMESTAMP";
-			
-		}
-		// TODO Auto-generated method stub
+		String where = "id=?";
+		String[] where_args = {id+""};
 		Cursor cursor = database.query(false,TABLE,cols,where,where_args,null,null,TRANS_CREATED+" desc",null);
+		cursor.moveToFirst();
+		
+		int index_id = cursor.getColumnIndex(TRANS_ID);
+		int index_amount = cursor.getColumnIndex(TRANS_AMOUNT);
+		int index_cat_id = cursor.getColumnIndex(TRANS_CAT_ID);
+		int index_trans_type = cursor.getColumnIndex(TRANS_TYPE);
+		int index_desc = cursor.getColumnIndex(TRANS_DESC);
+		int index_created = cursor.getColumnIndex(TRANS_CREATED);
+		
+		
+		return new Transaction(cursor.getInt(index_id),
+				cursor.getFloat(index_amount),
+				categoryDB.findById(cursor.getInt(index_cat_id)),
+				cursor.getInt(index_trans_type),
+				cursor.getString(index_desc),
+				cursor.getString(index_created)
+				);
+	}
+	public ArrayList<Transaction> selectAllRecords() {
+		String[] cols = {TRANS_ID,TRANS_AMOUNT,TRANS_CAT_ID,TRANS_TYPE,TRANS_DESC,TRANS_CREATED};
+		
+		// TODO Auto-generated method stub
+		Cursor cursor = database.query(false,TABLE,cols,null,null,null,null,TRANS_CREATED+" desc",null);
 		
 		cursor.moveToFirst();
 		

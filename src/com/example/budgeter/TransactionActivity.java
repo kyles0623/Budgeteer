@@ -12,6 +12,7 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
@@ -27,18 +28,27 @@ public class TransactionActivity extends Activity implements OnItemSelectedListe
 	private Category category;
 	private CategoryDataSource categoryDB;
 	private TransactionDataSource transactionDB;
-	private int transactionID;
 	private AutoCompleteTextView categoryView;
+	private Spinner transType;
 	private EditText amountView;
+	private Button addTransaction;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.transaction);
 		
+		//Initial required database connections and the views. 
 		categoryDB = new CategoryDataSource(this);
 		transactionDB = new TransactionDataSource(this);
-		transaction = new Transaction();
+		
 		amountView = (EditText)findViewById(R.id.transaction_amount);
+		transType = (Spinner)findViewById(R.id.transaction_type);
+		addTransaction = (Button)findViewById(R.id.add_transaction);
+		
+		//Used to store all the transactions information
+		transaction = new Transaction();
+		
+		
 		setCategoryView();
 		setTransactionTypeView();
 		
@@ -46,13 +56,24 @@ public class TransactionActivity extends Activity implements OnItemSelectedListe
 		Bundle extras = intent.getExtras();
 		if(extras != null)
 		{
+			
+			//Set Values if we are editing
 			if(extras.containsKey("transactionId"))
 			{
-				this.transaction.setId(extras.getInt("transactionId"));
+				int id = extras.getInt("transactionId");
+				this.transaction = transactionDB.findById(id);
+				this.category = this.transaction.getCategory();
+				amountView.setText(this.transaction.getAmount()+"");
+				categoryView.setText(this.category.getName());
+				
+				//Note: not the best way to do this
+				transType.setSelection(this.transaction.getTransactionType()-1);
+				addTransaction.setText(getString(R.string.update_transaction_btn));
+				
 			}
 		}
 	}
-	
+	//Initial the Transaction Type Spinner
 	private void setTransactionTypeView()
 	{
 		Spinner spinner = (Spinner) findViewById(R.id.transaction_type);
@@ -66,6 +87,8 @@ public class TransactionActivity extends Activity implements OnItemSelectedListe
 		
 		spinner.setOnItemSelectedListener(this);
 	}
+	
+	//Initialize Category View AutoComplete
 	private void setCategoryView()
 	{
 		categoryView = (AutoCompleteTextView ) findViewById(R.id.categories_textView);
@@ -79,6 +102,8 @@ public class TransactionActivity extends Activity implements OnItemSelectedListe
 	
 	public void onItemSelected(AdapterView<?> parent, View view, 
             int pos, long id) {
+		
+		//
 		String trans_type = parent.getItemAtPosition(pos).toString();
 		//Toast.makeText(TransactionActivity.this, trans_type,Toast.LENGTH_SHORT).show();
 		
@@ -91,9 +116,12 @@ public class TransactionActivity extends Activity implements OnItemSelectedListe
         // parent.getItemAtPosition(pos)
     }
 	
+	//Required but not implemented
 	public void onNothingSelected(AdapterView<?> parent) {
         
     }
+	
+	
 	private boolean setCategory()
 	{
 		String name = categoryView.getText().toString();
@@ -143,7 +171,19 @@ public class TransactionActivity extends Activity implements OnItemSelectedListe
 			case R.id.add_transaction:
 				if(setTransaction() && setCategory())
 				{
+					//Also updates record. I should change the name of this.
+					//IF id is not set in the Transaction model, then add it 
+					//if it is set then update that record
 					transactionDB.createRecord(this.transaction);
+					
+					if(this.transaction.getId() == -1)
+					{
+						Toast.makeText(this, "A Transaction has been added to the database.", Toast.LENGTH_SHORT).show();
+					}
+					else
+					{
+						Toast.makeText(this, "A Transaction has been updated in the database.", Toast.LENGTH_SHORT).show();
+					}
 					finish();
 				}
 				break;
