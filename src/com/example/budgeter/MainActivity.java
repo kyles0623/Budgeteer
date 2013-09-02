@@ -30,14 +30,11 @@ public class MainActivity extends ListActivity implements OnClickListener {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 		transactionDB = new TransactionDataSource(this);
-		transactionDB.deleteAllRows();
+		//transactionDB.deleteAllRows();
 		
 		
 		//Testing Values
-		transactionDB.createRecord(125.06f,1,1,"Bought everyone lunch");
-		transactionDB.createRecord(223.06f,1,2,"Got Paid");
-		transactionDB.createRecord(232.023f,1,2,"Found a Bag of Money");
-		transactionDB.createRecord(1012.023f,1,1,"Funeral Costs");			
+		
 		
 
 		
@@ -132,6 +129,8 @@ public class MainActivity extends ListActivity implements OnClickListener {
 		
 		//Get all Transactions from today
 		List<Transaction> values = transactionDB.selectAllRecords();
+		
+		
 		//Set listview to have the transactions from today
 		ArrayAdapter<Transaction> adapter = new ArrayAdapter<Transaction>(this,android.R.layout.simple_list_item_1,values);
 		setListAdapter(adapter);
