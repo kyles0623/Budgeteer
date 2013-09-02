@@ -3,11 +3,12 @@
 
     <string name="app_name">Budgeteer</string>
     <string name="title">The Budgeteer!</string>
-    <string name="balance_label">Current Balance: </string>
+    <string name="balance_label">Balance: </string>
     <string name="new_transaction_label">New Transaction</string>
 	<string name="amount_label">Amount: </string>
 	<string name="category_prompt">Categories</string>
 	<string name="category_label">Category: </string>
 	<string name="transaction_type_label">Transaction Type: </string>
 	<string name="new_transaction_btn">Add Transaction</string>
+	<string name="recent_trans_label">Recent Transactions</string>
 </resources>

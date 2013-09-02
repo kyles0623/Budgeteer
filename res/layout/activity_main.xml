@@ -5,23 +5,24 @@
     android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".MainActivity" >
    <LinearLayout
        android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:layout_alignParentBottom="true"
     android:layout_alignParentLeft="true">
-	<TextView
+	<!-- <TextView
 	    android:layout_width="wrap_content"
 	    android:layout_weight="1"
         android:layout_height="wrap_content"
         android:text="@string/balance_label"
-        />
+        android:textSize="30sp"
+        /> -->
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_weight="1"
+         android:textSize="30sp"
         android:id="@+id/current_balance"
         />
     </LinearLayout>
@@ -34,11 +35,19 @@
         android:onClick="onClick"
         android:text="@string/new_transaction_label"
         />
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/recent_trans_label"
+        android:textSize="20sp"
+        android:id="@+id/recent_trans_label"
+        android:padding="10dp"
+        android:layout_alignParentTop="true"/>
     <ListView 
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:layout_alignParentTop="true"
         android:id="@android:id/list"
+        android:layout_below="@id/recent_trans_label"
         android:layout_above="@id/new_transaction" />
 
 </RelativeLayout>

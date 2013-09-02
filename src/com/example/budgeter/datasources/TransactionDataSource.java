@@ -33,6 +33,7 @@ public class TransactionDataSource extends AbstractDataSource {
 		values.put(TRANS_CAT_ID,transaction.getCategoryId());
 		values.put(TRANS_TYPE,transaction.getTransactionType());
 		values.put(TRANS_DESC,transaction.getDescription());
+		
 		return database.insert(TABLE, null, values); 
 	}
 	

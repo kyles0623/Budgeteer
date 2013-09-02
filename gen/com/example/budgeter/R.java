@@ -27,15 +27,16 @@ public final class R {
         public static final int ic_launcher=0x7f020000;
     }
     public static final class id {
-        public static final int add_transaction=0x7f090008;
-        public static final int amount=0x7f090003;
-        public static final int amount_section=0x7f090002;
-        public static final int categories_textView=0x7f090006;
-        public static final int category_section=0x7f090005;
+        public static final int add_transaction=0x7f090009;
+        public static final int amount=0x7f090004;
+        public static final int amount_section=0x7f090003;
+        public static final int categories_textView=0x7f090007;
+        public static final int category_section=0x7f090006;
         public static final int current_balance=0x7f090000;
         public static final int new_transaction=0x7f090001;
-        public static final int transaction_amount=0x7f090004;
-        public static final int transaction_type=0x7f090007;
+        public static final int recent_trans_label=0x7f090002;
+        public static final int transaction_amount=0x7f090005;
+        public static final int transaction_type=0x7f090008;
     }
     public static final class layout {
         public static final int activity_main=0x7f030000;
@@ -52,6 +53,7 @@ public final class R {
         public static final int category_prompt=0x7f060005;
         public static final int new_transaction_btn=0x7f060008;
         public static final int new_transaction_label=0x7f060003;
+        public static final int recent_trans_label=0x7f060009;
         public static final int title=0x7f060001;
         public static final int transaction_type_label=0x7f060007;
     }

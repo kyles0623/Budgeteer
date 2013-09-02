@@ -9,15 +9,16 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
-import android.widget.ListView;
 import android.widget.TextView;
 
 import com.example.budgeter.datasources.TransactionDataSource;
 import com.example.budgeter.helpers.FormatHelper;
 import com.example.budgeter.models.Transaction;
 
-public class MainActivity extends ListActivity implements OnClickListener {
+public class MainActivity extends ListActivity implements OnClickListener, OnItemSelectedListener {
 
 	private String TAG = "Budgeteer";
 	private TransactionDataSource transactionDB;
@@ -26,7 +27,7 @@ public class MainActivity extends ListActivity implements OnClickListener {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 		transactionDB = new TransactionDataSource(this);
-		
+		//transactionDB.deleteAllRows()
 		/*
 		transactionDB.createRecord(125.06f,1,1,"Bought everyone lunch");
 		transactionDB.createRecord(223.06f,1,2,"Got Paid");
@@ -90,6 +91,21 @@ public class MainActivity extends ListActivity implements OnClickListener {
 	    super.onResume();
 	   this.setViewValues();
     }
+
+	@Override
+	public void onItemSelected(AdapterView<?> parent, View view, int pos,
+			long id) {
+		Transaction trans = (Transaction)parent.getSelectedItem();
+		
+		
+		
+	}
+
+	@Override
+	public void onNothingSelected(AdapterView<?> arg0) {
+		// TODO Auto-generated method stub
+		
+	}
 
 
 }

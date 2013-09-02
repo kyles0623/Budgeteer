@@ -3,6 +3,7 @@ package com.example.budgeter;
 import java.util.List;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
@@ -26,13 +27,14 @@ public class TransactionActivity extends Activity implements OnItemSelectedListe
 	private Category category;
 	private CategoryDataSource categoryDB;
 	private TransactionDataSource transactionDB;
-	
+	private int transactionID;
 	private AutoCompleteTextView categoryView;
 	private EditText amountView;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.transaction);
+		
 		categoryDB = new CategoryDataSource(this);
 		transactionDB = new TransactionDataSource(this);
 		transaction = new Transaction();
@@ -40,6 +42,15 @@ public class TransactionActivity extends Activity implements OnItemSelectedListe
 		setCategoryView();
 		setTransactionTypeView();
 		
+		Intent intent = getIntent();
+		Bundle extras = intent.getExtras();
+		if(extras != null)
+		{
+			if(extras.containsKey("transactionId"))
+			{
+				this.transaction.setId(extras.getInt("transactionId"));
+			}
+		}
 	}
 	
 	private void setTransactionTypeView()
